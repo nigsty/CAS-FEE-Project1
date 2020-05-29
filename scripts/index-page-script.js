@@ -6,7 +6,6 @@ const searchDisplay = document.getElementById('search-display');
 
 searchDisplay.addEventListener('click', (event) => {
 	let elementClicked = event.target;
-
 	const elements = document.getElementsByClassName('filter-button');
 	for (let i = 0; i < elements.length; i++) {
 		elements[i].classList.remove('active');
@@ -20,12 +19,12 @@ searchDisplay.addEventListener('click', (event) => {
 		filteredItems.forEach((filteredItem) => attachToDom(filteredItem));
 	} else {
 		//Get todos sorted by finishing date
-		if (elementClicked.id === 'finishedDate') {
+		if (elementClicked.id === 'finished-date') {
 			filters.sortCriteria = 'finishedDate';
 			renderFiltered(todoList, filters);
 		}
 		//Get todos sorted by created date
-		if (elementClicked.id === 'createdDate') {
+		if (elementClicked.id === 'created-date') {
 			filters.sortCriteria = 'createdOn';
 			renderFiltered(todoList, filters);
 		}
@@ -35,7 +34,7 @@ searchDisplay.addEventListener('click', (event) => {
 			renderFiltered(todoList, filters);
 		}
 
-		document.getElementById('todo').dataset.content = 'There are no todo items yet to list here.';
+		document.getElementById('todo').dataset.content = 'There are no To-do items yet to list here.';
 	}
 });
 

@@ -49,15 +49,15 @@ const render = (data) => {
 	let checked_item = data.completed ? 'checked="checked"' : '';
 	return `
 			<li data-id="${data.id}" class="listItem" id="listItem-${data.id}" >
-				<div class="listColumen1">
-					<div class="listItemRowOne">
-						<div class="itemDone">${data.doneUntilValue}</div>
-						<div class="itemTitle">${data.titleValue}</div>
-						<div class="itemImportancy">1=Niedrig bis 4=sehr Wichtig: <h2 class="itemImportancy"> ${data.importancyValue}</h2></div>
+				<div class="list-columen1">
+					<div class="list-item-row-one">
+						<div class="item-done-until">${data.doneUntilValue}</div>
+						<div class="item-title">${data.titleValue}</div>
+						<div class="item-importancy">1=Niedrig bis 4=sehr Wichtig: <h2 class="itemImportancy"> ${data.importancyValue}</h2></div>
 					</div>
-					<div class="listItemRowTwo">
-						<div class="itemCheckbox"><input class="checkbox" id="checkbox" type="checkbox" name="finished" ${checked_item} onchange="onChangeTask(${data.id})"> Finished</div>
-						<div class="itemDescription">${data.descriptionValue}</div>
+					<div class="list-item-row-two">
+						<div class="item-checkbox"><input class="checkbox" id="checkbox" type="checkbox" name="finished" ${checked_item} onchange="onChangeTask(${data.id})"> Finished</div>
+						<div class="item-description">${data.descriptionValue}</div>
 					</div>
 				</div>
 				<div class="buttons">
@@ -120,7 +120,7 @@ const editTask = (id) => {
 		button[0].classList.add('save');
 
 		// Description text
-		const itemDescription = parentDOM.getElementsByClassName('itemDescription');
+		const itemDescription = parentDOM.getElementsByClassName('item-description');
 		itemDescription[0].innerHTML =
 			'<input type="text" class="Description-editable" value="' + itemDescription[0].innerText + '" />';
 		console.log('the edit key pressed');
@@ -128,8 +128,8 @@ const editTask = (id) => {
 		parentDOM.removeAttribute('data-edit');
 
 		// Description text
-		const itemDescription = parentDOM.getElementsByClassName('itemDescription');
-		const $txt = parentDOM.getElementsByClassName('Description-editable')[0].value;
+		const itemDescription = parentDOM.getElementsByClassName('item-description');
+		const $txt = parentDOM.getElementsByClassName('description-editable')[0].value;
 		data[objIndex].descriptionValue = $txt;
 		itemDescription[0].innerHTML = $txt;
 		console.log('the save key  pressed');

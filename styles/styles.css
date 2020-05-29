@@ -50,7 +50,7 @@
 	--save-img: url(../img/save-black.png);
 	--remove-img: url(../img/remove-black.png);
 	--completed-task: #fdfdfd;
-	--Description-editable-bg: #e9e9e9;
+	--description-editable-bg: #e9e9e9;
 }
 
 [data-theme='dark'] {
@@ -66,7 +66,7 @@
 	--input-textarea-color: #3c3c3c;
 	--input-textarea-color: #222;
 	--completed-task: #3f3f3f;
-	--Description-editable-bg: #161625;
+	--description-editable-bg: #161625;
 	--edit-img: url(../img/edit-white.png);
 	--save-img: url(../img/save-white.png);
 	--remove-img: url(../img/remove-white.png);
@@ -270,41 +270,41 @@ label {
 	flex-basis: 80%;
 }
 
-.listItemRowOne,
+.list-item-row-one,
 .listItemRowTwo {
 	display: flex;
 	flex-flow: row;
 }
 
-.listItemRowOne {
+.list-item-row-one {
 	margin-bottom: 20px;
 }
 
-.itemDone,
-.itemImportancy,
-.itemCheckbox {
+.item-done-until,
+.item-importancy,
+.item-checkbox {
 	flex-basis: 25%;
 }
 
-.itemCheckbox > label {
+.item-checkbox > label {
 	cursor: pointer;
 }
 
-.itemImportancy {
+.item-importancy {
 	font-size: 12px;
 }
 
-.itemTitle {
+.item-title {
 	flex-basis: 50%;
 }
 
-.itemDescription {
+.item-description {
 	flex-basis: 75%;
 }
 
-input.Description-editable {
+input.description-editable {
 	flex-basis: 100%;
-	background-color: var(--Description-editable-bg);
+	background-color: var(--description-editable-bg);
 	width: 100%;
 	margin: 0;
 }
