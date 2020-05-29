@@ -11,5 +11,3 @@ form.addEventListener('submit', (e) => {
 });
 
 titleValidat();
-
-add_item();

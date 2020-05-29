@@ -15,7 +15,7 @@ const titleValidat = () => {
 	const titleValueValidat = document.getElementById('title');
 	titleValueValidat.addEventListener('input', function (event) {
 		if (titleValueValidat.validity.tooShort) {
-			titleValueValidat.setCustomValidity('Viel zu kurz! min. 5 bitte');
+			titleValueValidat.setCustomValidity('Viel zu kurz! min. 5 char. bitte');
 		} else {
 			titleValueValidat.setCustomValidity('');
 		}
@@ -27,7 +27,7 @@ const add_item = () => {
 	const title = document.querySelector('#title');
 	const description = document.querySelector('#description');
 	const importancy = document.querySelector('#importancy');
-	const doneUntil = document.querySelector('#doneUntil');
+	const doneUntil = document.querySelector('#done-until');
 	if (!title.value) return;
 	let current_item = {
 		id: Math.floor(Math.random() * 100),
@@ -48,7 +48,7 @@ const add_item = () => {
 const render = (data) => {
 	let checked_item = data.completed ? 'checked="checked"' : '';
 	return `
-			<li data-id="${data.id}" class="listItem" id="listItem-${data.id}" >
+			<li data-id="${data.id}" class="list-item" id="list-item-${data.id}" >
 				<div class="list-columen1">
 					<div class="list-item-row-one">
 						<div class="item-done-until">${data.doneUntilValue}</div>
@@ -74,8 +74,8 @@ const filters = {
 };
 
 //sorts row todoList
-const renderFiltered = function (todoList, filters) {
-	const sortedTodos = todoList.sort((a, b) => (a[filters.sortCriteria] > b[filters.sortCriteria] ? 1 : -1));
+const renderFiltered = function (data, filters) {
+	const sortedTodos = data.sort((a, b) => (a[filters.sortCriteria] > b[filters.sortCriteria] ? 1 : -1));
 	placeholder.innerHTML = '';
 	sortedTodos.forEach((sortedTodo) => attachToDom(sortedTodo));
 };
@@ -103,7 +103,7 @@ const onChangeTask = (id) => {
 
 // editing description input field
 const editTask = (id) => {
-	const parentDOM = document.getElementById('listItem-' + id);
+	const parentDOM = document.getElementById('list-item-' + id);
 	const editStatus = parentDOM.getAttribute('data-edit');
 
 	// Get local storage data
@@ -122,7 +122,7 @@ const editTask = (id) => {
 		// Description text
 		const itemDescription = parentDOM.getElementsByClassName('item-description');
 		itemDescription[0].innerHTML =
-			'<input type="text" class="Description-editable" value="' + itemDescription[0].innerText + '" />';
+			'<input type="text" class="description-editable" value="' + itemDescription[0].innerText + '" />';
 		console.log('the edit key pressed');
 	} else {
 		parentDOM.removeAttribute('data-edit');

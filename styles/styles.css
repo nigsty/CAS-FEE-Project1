@@ -114,7 +114,7 @@ h1 {
 }
 
 h2 {
-	font-size: 14px;
+	font-size: 30px;
 	margin: 0 8px;
 	display: inline;
 }
@@ -137,6 +137,7 @@ a {
 	background-color: var(--active-focused);
 }
 
+.thin-box:hover,
 li a:hover,
 li a:focus {
 	border-color: var(--active-focused);
@@ -219,7 +220,7 @@ lists,
 header,
 ul,
 section,
-.listItem {
+.list-item {
 	display: flex;
 	flex-flow: row;
 	justify-content: space-between;
@@ -260,7 +261,7 @@ label {
 }
 
 #lists ul,
-.listItem li {
+.list-item li {
 	margin-top: 16px;
 	display: flex;
 	flex-flow: column;
@@ -271,7 +272,7 @@ label {
 }
 
 .list-item-row-one,
-.listItemRowTwo {
+.list-item-row-two {
 	display: flex;
 	flex-flow: row;
 }
@@ -348,15 +349,13 @@ button.remove {
 	background-image: var(--remove-img);
 }
 
-.buttons button.edit:hover {
+.buttons button.edit:hover,
+buttons button.edit:focus {
 	background-color: rgb(5, 159, 255, 0.5);
 }
 
-.buttons button.remove:hover {
-	background-color: rgb(200, 49, 49, 0.2);
-}
-
-.buttons button.save:hover {
+.buttons button.save:hover, 
+.buttons button.save:focus {
 	background-color: rgb(49, 200, 49, 0.5);
 }
 
