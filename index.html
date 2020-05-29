@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>--Projekt 1 -- TODOs Management App</title>
+		<meta name="author" content="" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" type="text/css" href="styles/styles.css" rel="stylesheet" />
+		<link rel="icon" href="favicon.png" type="image/png" />
+		<script src="https://kit.fontawesome.com/2f5840766b.js"></script>
+	</head>
+
+	<body>
+		<h1>Todo Management App</h1>
+		<div class="container">
+			<header class="top-nav">
+				<button class="thin-box"><a href="input-todo.html">Create new note</a></button>
+				<select id="theme-switcher">
+					<option id="theme-light" value="light">Block White-Style</option>
+					<option id="theme-dark" value="dark">Block Dark-style</option>
+				</select>
+			</header>
+
+			<ul id="search-display">
+				<li><a class="filter-button" id="finishedDate">By finish date</a></li>
+				<li><a class="filter-button" id="createdDate">By created date</a></li>
+				<li><a class="filter-button" id="importance">By importance</a></li>
+				<li><a class="filter-button" id="finished">show finished</a></li>
+			</ul>
+			<div id="lists">
+				<ul class="todo" id="todo"></ul>
+			</div>
+		</div>
+		<!--  outer container -->
+
+		<script src="scripts/the-functions.js"></script>
+		<script src="scripts/index-page-script.js"></script>
+		<script src="scripts/theme-switcher.js"></script>
+	</body>
+</html>
