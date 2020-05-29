@@ -114,7 +114,6 @@ h1 {
 }
 
 h2 {
-	font-size: 30px;
 	margin: 0 8px;
 	display: inline;
 }
@@ -354,7 +353,7 @@ buttons button.edit:focus {
 	background-color: rgb(5, 159, 255, 0.5);
 }
 
-.buttons button.save:hover, 
+.buttons button.save:hover,
 .buttons button.save:focus {
 	background-color: rgb(49, 200, 49, 0.5);
 }

@@ -53,12 +53,15 @@ const render = (data) => {
 					<div class="list-item-row-one">
 						<div class="item-done-until">${data.doneUntilValue}</div>
 						<div class="item-title">${data.titleValue}</div>
-						<div class="item-importancy">1=Niedrig bis 4=sehr Wichtig: <h2 class="item-importancy"> ${data.importancyValue}</h2></div>
+						<div class="item-importancy"><h2> ${data.importancyValue}</h2> 1=Niedrig bis 4=sehr Wichtig</div>
 					</div>
-					<div class="list-item-row-two">
-						<div class="item-checkbox"><input class="checkbox" id="checkbox" type="checkbox" name="finished" ${checked_item} onchange="onChangeTask(${data.id})"> Finished</div>
-						<div class="item-description">${data.descriptionValue}</div>
-					</div>
+				
+
+				<div class="list-item-row-two">
+					<div class="item-checkbox"><input class="checkbox" id="checkbox" type="checkbox" name="finished" ${checked_item} onchange="onChangeTask(${data.id})"> Finished</div>
+					<div class="item-description">${data.descriptionValue}</div>
+				</div>
+
 				</div>
 				<div class="buttons">
 						<button class="edit" onClick="editTask(${data.id})"></button>
@@ -101,6 +104,7 @@ const onChangeTask = (id) => {
 	updateLocalStorage(data);
 };
 
+// editing description input field
 // editing description input field
 const editTask = (id) => {
 	const parentDOM = document.getElementById('list-item-' + id);
