@@ -28,6 +28,7 @@ const add_item = () => {
 	const description = document.querySelector('#description');
 	const importancy = document.querySelector('#importancy');
 	const doneUntil = document.querySelector('#done-until');
+
 	if (!title.value) return;
 	let current_item = {
 		id: Math.floor(Math.random() * 100),
@@ -47,11 +48,24 @@ const add_item = () => {
 // rendering saved data to the DOM
 const render = (data) => {
 	let checked_item = data.completed ? 'checked="checked"' : '';
+
+	let doneUntilRender = data.doneUntilValue;
+	console.log(doneUntilRender);
+
+	const doneUntilMoment = moment(doneUntilRender).locale('de').calendar(null, {
+		sameDay: '[Heute]',
+		nextDay: '[Morgen]',
+		nextWeek: '[Nächsten] dddd',
+		lastDay: '[Gestern]',
+		lastWeek: '[letzter] dddd',
+		sameElse: '[Irgendwann]',
+	});
+
 	return `
 			<li data-id="${data.id}" class="list-item" id="list-item-${data.id}" >
 				<div class="list-columen1">
 					<div class="list-item-row-one">
-						<div class="item-done-until">${data.doneUntilValue}</div>
+						<div class="item-done-until">${doneUntilMoment}</div>
 						<div class="item-title">${data.titleValue}</div>
 						<div class="item-importancy"><h2> ${data.importancyValue}</h2> 1=Niedrig bis 4=sehr Wichtig</div>
 					</div>
@@ -72,13 +86,12 @@ const render = (data) => {
 
 const filters = {
 	finished: false,
-	sortCriteria: new Date(),
-	importancyValue: 0,
+	sortCriteria: '',
 };
 
 //sorts row todoList
 const renderFiltered = function (data, filters) {
-	const sortedTodos = data.sort((a, b) => (a[filters.sortCriteria] > b[filters.sortCriteria] ? 1 : -1));
+	const sortedTodos = data.sort((a, b) => (a[filters.sortCriteria] > b[filters.sortCriteria] ? -1 : 1));
 	placeholder.innerHTML = '';
 	sortedTodos.forEach((sortedTodo) => attachToDom(sortedTodo));
 };
@@ -91,7 +104,7 @@ const attachToDom = (data) => {
 //toggling current data checkbox
 const onChangeTask = (id) => {
 	const data = getSavedTodos();
-	const finisheddate = new Date();
+	const finisheddate = moment().valueOf();
 	const objIndex = data.findIndex((obj) => obj.id === id);
 
 	if (!data[objIndex].completed) {
@@ -104,7 +117,6 @@ const onChangeTask = (id) => {
 	updateLocalStorage(data);
 };
 
-// editing description input field
 // editing description input field
 const editTask = (id) => {
 	const parentDOM = document.getElementById('list-item-' + id);

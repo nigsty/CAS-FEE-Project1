@@ -15,12 +15,14 @@ searchDisplay.addEventListener('click', (event) => {
 	//Get todos filter finished date
 	if (elementClicked.id === 'finished') {
 		const filteredItems = data.filter((item) => item.completed);
+		now = moment();
+		console.log(`This is time now in moment ${now}`);
 		placeholder.innerHTML = '';
 		filteredItems.forEach((filteredItem) => attachToDom(filteredItem));
 	} else {
 		//Get todos sorted by finishing date
-		if (elementClicked.id === 'finished-date') {
-			filters.sortCriteria = 'finishedDate';
+		if (elementClicked.id === 'finish-date') {
+			filters.sortCriteria = 'doneUntilValue';
 			renderFiltered(data, filters);
 		}
 		//Get todos sorted by created date
