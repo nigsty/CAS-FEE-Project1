@@ -29,15 +29,30 @@ const add_item = () => {
 	const importancy = document.querySelector('#importancy');
 	const doneUntil = document.querySelector('#done-until');
 
+	const doneUntilMoment = moment(doneUntil.value).locale('de').calendar(null, {
+		sameDay: '[Heute]',
+		nextDay: '[Morgen]',
+		nextWeek: '[Nächsten] dddd',
+		lastDay: '[Gestern]',
+		lastWeek: '[letzter] dddd',
+		sameElse: '[Irgendwann]',
+	});
+
+	//const doneUntilMoment = moment(doneUntil.value).locale('de').fromNow();
+
+	//const doneUntilMoment = moment(doneUntil.value).locale('de').calendar();
+	//const now = moment();
+	//const calcDoneUnitl = now.subtract(doneUntilMoment);
+
 	if (!title.value) return;
 	let current_item = {
 		id: Math.floor(Math.random() * 100),
 		titleValue: title.value,
 		descriptionValue: description.value,
 		importancyValue: importancy.value,
-		doneUntilValue: doneUntil.value,
+		doneUntilValue: doneUntilMoment,
 		completed: false,
-		createdOn: new Date(),
+		createdOn: moment.valueOf(),
 		finishedOn: '',
 	};
 	data.push(current_item);
@@ -48,21 +63,11 @@ const add_item = () => {
 // rendering saved data to the DOM
 const render = (data) => {
 	let checked_item = data.completed ? 'checked="checked"' : '';
-	let doneUntilRender = data.doneUntilValue;
-	const doneUntilMoment = moment(doneUntilRender).locale('de').calendar(null, {
-		sameDay: '[Heute]',
-		nextDay: '[Morgen]',
-		nextWeek: '[Nächsten] dddd',
-		lastDay: '[Gestern]',
-		lastWeek: '[letzter] dddd',
-		sameElse: '[Irgendwann]',
-	});
-
 	return `
 			<li data-id="${data.id}" class="list-item" id="list-item-${data.id}" >
 				<div class="list-columen1">
 					<div class="list-item-row-one">
-						<div class="item-done-until">${doneUntilMoment}</div>
+						<div class="item-done-until">${data.doneUntilValue}</div>
 						<div class="item-title">${data.titleValue}</div>
 						<div class="item-importancy"><h2> ${data.importancyValue}</h2> 1=Niedrig bis 4=sehr Wichtig</div>
 					</div>
@@ -70,7 +75,7 @@ const render = (data) => {
 
 				<div class="list-item-row-two">
 					<div class="item-checkbox"><input class="checkbox" id="checkbox" type="checkbox" name="finished" ${checked_item} onchange="onChangeTask(${data.id})"> Finished</div>
-					<div class="item-description">${data.descriptionValue}</div>
+					<div class="item-description" id="item-description-${data.id}" contenteditable="true" onkeyup="storeEditedDescription(${data.id});">${data.descriptionValue}</div>
 				</div>
 
 				</div>
@@ -88,7 +93,7 @@ const filters = {
 
 //sorts row todoList
 const renderFiltered = function (data, filters) {
-	const sortedTodos = data.sort((a, b) => (a[filters.sortCriteria] > b[filters.sortCriteria] ? -1 : 1));
+	const sortedTodos = todoList.sort((a, b) => (a[filters.sortCriteria] > b[filters.sortCriteria] ? -1 : 1));
 	placeholder.innerHTML = '';
 	sortedTodos.forEach((sortedTodo) => attachToDom(sortedTodo));
 };
@@ -101,8 +106,9 @@ const attachToDom = (data) => {
 //toggling current data checkbox
 const onChangeTask = (id) => {
 	const data = getSavedTodos();
-	const finisheddate = new Date();
+	const finisheddate = moment().valueOf();
 	const objIndex = data.findIndex((obj) => obj.id === id);
+
 	if (!data[objIndex].completed) {
 		data[objIndex].completed = true;
 		data[objIndex].finishedOn = finisheddate;
@@ -114,42 +120,13 @@ const onChangeTask = (id) => {
 };
 
 // editing description input field
-const editTask = (id) => {
-	const parentDOM = document.getElementById('list-item-' + id);
-	const editStatus = parentDOM.getAttribute('data-edit');
-
-	// Get local storage data
+const storeEditedDescription = (id) => {
 	const data = getSavedTodos();
-
-	//Find index of specific object using findIndex method.
 	const objIndex = data.findIndex((obj) => obj.id === id);
+	const itemDescription = document.getElementById('item-description-' + id);
+	data[objIndex].descriptionValue = itemDescription.innerHTML;
 
-	if (editStatus == null) {
-		parentDOM.setAttribute('data-edit', 'true');
-
-		// Edit button
-		const button = parentDOM.getElementsByClassName('edit');
-		button[0].classList.add('save');
-
-		// Description text
-		const itemDescription = parentDOM.getElementsByClassName('item-description');
-		itemDescription[0].innerHTML =
-			'<input type="text" class="description-editable" value="' + itemDescription[0].innerText + '" />';
-	} else {
-		parentDOM.removeAttribute('data-edit');
-
-		// Description text
-		const itemDescription = parentDOM.getElementsByClassName('item-description');
-		const $txt = parentDOM.getElementsByClassName('description-editable')[0].value;
-		data[objIndex].descriptionValue = $txt;
-		itemDescription[0].innerHTML = $txt;
-
-		// Edit button
-		const button = parentDOM.getElementsByClassName('edit');
-		button[0].classList.remove('save');
-	}
-
-	// Update local storage data
+	//data[objIndex].descriptionValue = data[objIndex].itemDescription.value;
 	updateLocalStorage(data);
 };
 

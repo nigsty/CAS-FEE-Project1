@@ -29,13 +29,25 @@ const add_item = () => {
 	const importancy = document.querySelector('#importancy');
 	const doneUntil = document.querySelector('#done-until');
 
+	let doneUntilMomen = moment(doneUntil.value).calendar(null, {
+		sameDay: '[Today]',
+		nextDay: '[Tomorrow]',
+		nextWeek: 'dddd',
+		lastDay: '[Yesterday]',
+		lastWeek: '[Last] dddd',
+		sameElse: 'DD/MM/YYYY',
+	});
+	//const doneUntilMoment = moment(doneUntil.value).locale('de').calendar();
+	//const now = moment();
+	//const calcDoneUnitl = now.subtract(doneUntilMoment);
+
 	if (!title.value) return;
 	let current_item = {
 		id: Math.floor(Math.random() * 100),
 		titleValue: title.value,
 		descriptionValue: description.value,
 		importancyValue: importancy.value,
-		doneUntilValue: doneUntil.value,
+		doneUntilValue: doneUntilMoment,
 		completed: false,
 		createdOn: new Date(),
 		finishedOn: '',
@@ -48,21 +60,11 @@ const add_item = () => {
 // rendering saved data to the DOM
 const render = (data) => {
 	let checked_item = data.completed ? 'checked="checked"' : '';
-	let doneUntilRender = data.doneUntilValue;
-	const doneUntilMoment = moment(doneUntilRender).locale('de').calendar(null, {
-		sameDay: '[Heute]',
-		nextDay: '[Morgen]',
-		nextWeek: '[Nächsten] dddd',
-		lastDay: '[Gestern]',
-		lastWeek: '[letzter] dddd',
-		sameElse: '[Irgendwann]',
-	});
-
 	return `
 			<li data-id="${data.id}" class="list-item" id="list-item-${data.id}" >
 				<div class="list-columen1">
 					<div class="list-item-row-one">
-						<div class="item-done-until">${doneUntilMoment}</div>
+						<div class="item-done-until">${data.doneUntilValue}</div>
 						<div class="item-title">${data.titleValue}</div>
 						<div class="item-importancy"><h2> ${data.importancyValue}</h2> 1=Niedrig bis 4=sehr Wichtig</div>
 					</div>
@@ -83,7 +85,8 @@ const render = (data) => {
 
 const filters = {
 	finished: false,
-	sortCriteria: '',
+	sortCriteria: new Date(),
+	importancyValue: 0,
 };
 
 //sorts row todoList
@@ -103,6 +106,7 @@ const onChangeTask = (id) => {
 	const data = getSavedTodos();
 	const finisheddate = new Date();
 	const objIndex = data.findIndex((obj) => obj.id === id);
+
 	if (!data[objIndex].completed) {
 		data[objIndex].completed = true;
 		data[objIndex].finishedOn = finisheddate;

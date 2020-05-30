@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <title>TODO inputs form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="styles/styles.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/styles.css" rel="stylesheet" />
     <link rel="icon" href="favicon.png" type="image/png"/>
 </head>
 
@@ -26,7 +26,7 @@
         </div>
         <div>
             <label for="doneuntil">Erledigt bis:</label>
-            <input type="datetime-local" id="done-until" name="doneuntil">
+            <input type="datetime-local" id="done-until" name="doneuntil" required>
         </div>
         <div>
             <button id="btn-cancel" type="reset">Cancel</button>
@@ -36,8 +36,6 @@
 
 </div> <!--  outer container -->
 
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment-with-locales.min.js"></script> -->
-<script src="scripts/lib/moment.min.js"></script>
 <script src="scripts/the-functions.js"></script>
 <script src="scripts/input-todo-page.js"></script>
 <script src="scripts/theme-switcher.js"></script>
