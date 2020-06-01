@@ -65,10 +65,8 @@ const render = (data) => {
 						<div class="item-done-until">${doneUntilMoment}</div>
 						<div class="item-title">${data.titleValue}</div>
 						<div class="item-importancy"><h2> ${data.importancyValue}</h2> 1=Niedrig bis 4=sehr Wichtig</div>
-					</div>
-				
-
-				<div class="list-item-row-two">
+					</div>	
+					<div class="list-item-row-two">
 					<div class="item-checkbox"><input class="checkbox" id="checkbox" type="checkbox" name="finished" ${checked_item} onchange="onChangeTask(${data.id})"> Finished</div>
 					<div class="item-description">${data.descriptionValue}</div>
 				</div>
@@ -83,17 +81,17 @@ const render = (data) => {
 
 const filters = {
 	finished: false,
-	sortCriteria: '',
+	sortBy: '',
 };
 
-//sorts row todoList
-const renderFiltered = function (data, filters) {
-	const sortedTodos = data.sort((a, b) => (a[filters.sortCriteria] > b[filters.sortCriteria] ? -1 : 1));
+//sorts todoList by one of 3 criterias then call attachToDom function
+const sortRender = function (data, filters) {
+	const sortedTodos = data.sort((a, b) => (a[filters.sortBy] > b[filters.sortBy] ? -1 : 1));
 	placeholder.innerHTML = '';
 	sortedTodos.forEach((sortedTodo) => attachToDom(sortedTodo));
 };
 
-//attaching each data to the DOM
+//attaching each todo to the DOM
 const attachToDom = (data) => {
 	placeholder.innerHTML += render(data);
 };
@@ -123,26 +121,23 @@ const editTask = (id) => {
 
 	//Find index of specific object using findIndex method.
 	const objIndex = data.findIndex((obj) => obj.id === id);
+	const itemDescription = parentDOM.getElementsByClassName('item-description')[0];
 
 	if (editStatus == null) {
 		parentDOM.setAttribute('data-edit', 'true');
+		itemDescription.setAttribute('contenteditable', 'true');
+		itemDescription.focus();
 
 		// Edit button
 		const button = parentDOM.getElementsByClassName('edit');
 		button[0].classList.add('save');
-
-		// Description text
-		const itemDescription = parentDOM.getElementsByClassName('item-description');
-		itemDescription[0].innerHTML =
-			'<input type="text" class="description-editable" value="' + itemDescription[0].innerText + '" />';
 	} else {
 		parentDOM.removeAttribute('data-edit');
+		itemDescription.removeAttribute('focused');
+		itemDescription.removeAttribute('contenteditable');
 
 		// Description text
-		const itemDescription = parentDOM.getElementsByClassName('item-description');
-		const $txt = parentDOM.getElementsByClassName('description-editable')[0].value;
-		data[objIndex].descriptionValue = $txt;
-		itemDescription[0].innerHTML = $txt;
+		data[objIndex]['descriptionValue'] = itemDescription.innerText;
 
 		// Edit button
 		const button = parentDOM.getElementsByClassName('edit');
@@ -154,6 +149,4 @@ const editTask = (id) => {
 };
 
 // Update local data Storage
-const updateLocalStorage = (data) => {
-	localStorage.setItem('todoList', JSON.stringify(data));
-};
+const updateLocalStorage = (data) => localStorage.setItem('todoList', JSON.stringify(data));

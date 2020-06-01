@@ -265,7 +265,7 @@ label {
 }
 
 /* sending last element to the most right */
-#search-display li:last-child,
+#filter-sort-display li:last-child,
 #change-background {
 	margin-left: auto;
 }
@@ -422,3 +422,5 @@ hr {
 	margin-bottom: 20px;
 	border-top: 1px solid var(--primary-font-color);
 }
+
+

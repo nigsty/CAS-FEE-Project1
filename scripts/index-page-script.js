@@ -2,7 +2,7 @@ const data = getSavedTodos();
 
 let placeholder = data.completed ? completed : todo;
 
-const searchDisplay = document.getElementById('search-display');
+const searchDisplay = document.getElementById('filter-sort-display');
 
 searchDisplay.addEventListener('click', (event) => {
 	let elementClicked = event.target;
@@ -21,22 +21,22 @@ searchDisplay.addEventListener('click', (event) => {
 	} else {
 		//Get todos sorted by finishing date
 		if (elementClicked.id === 'finish-date') {
-			filters.sortCriteria = 'doneUntilValue';
-			renderFiltered(todoList, filters);
+			filters.sortBy = 'doneUntilValue';
+			sortRender(todoList, filters);
 		}
 		//Get todos sorted by created date
 		if (elementClicked.id === 'created-date') {
-			filters.sortCriteria = 'createdOn';
-			renderFiltered(todoList, filters);
+			filters.sortBy = 'createdOn';
+			sortRender(todoList, filters);
 		}
 		//Get todos sorted by todos importancy
 		if (elementClicked.id === 'importance') {
-			filters.sortCriteria = 'importancyValue';
-			renderFiltered(todoList, filters);
+			filters.sortBy = 'importancyValue';
+			sortRender(todoList, filters);
 		}
 
 		document.getElementById('todo').dataset.content = 'There are no To-do items yet to list here.';
 	}
 });
 
-renderFiltered(data, filters);
+sortRender(data, filters);
