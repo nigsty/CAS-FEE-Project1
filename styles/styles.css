@@ -313,11 +313,9 @@ label {
 	flex-basis: 75%;
 }
 
-input.description-editable {
-	flex-basis: 100%;
+div:focus .item-description {
+	border: 1px solid rgb(49, 200, 49);
 	background-color: var(--description-editable-bg);
-	width: 100%;
-	margin: 0;
 }
 
 .buttons {
@@ -422,5 +420,3 @@ hr {
 	margin-bottom: 20px;
 	border-top: 1px solid var(--primary-font-color);
 }
-
-
