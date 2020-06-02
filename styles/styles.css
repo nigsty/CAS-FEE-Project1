@@ -313,7 +313,7 @@ label {
 	flex-basis: 75%;
 }
 
-div:focus .item-description {
+.item-description:focus {
 	border: 1px solid rgb(49, 200, 49);
 	background-color: var(--description-editable-bg);
 }

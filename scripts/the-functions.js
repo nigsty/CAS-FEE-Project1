@@ -6,9 +6,7 @@ const getSavedTodos = () => {
 };
 
 // Save the Todos to localStorage
-const setSaveTodos = (data) => {
-	localStorage.setItem('todoList', JSON.stringify(data));
-};
+const setSaveTodos = (data) => localStorage.setItem('todoList', JSON.stringify(data));
 
 //Title input value validation
 const titleValidat = () => {
@@ -79,22 +77,21 @@ const render = (data) => {
 				`;
 };
 
+//init
 const filters = {
 	finished: false,
 	sortBy: '',
 };
 
 //sorts todoList by one of 3 criterias then call attachToDom function
-const sortRender = function (data, filters) {
+const sortRender = (data, filters) => {
 	const sortedTodos = data.sort((a, b) => (a[filters.sortBy] > b[filters.sortBy] ? -1 : 1));
 	placeholder.innerHTML = '';
 	sortedTodos.forEach((sortedTodo) => attachToDom(sortedTodo));
 };
 
 //attaching each todo to the DOM
-const attachToDom = (data) => {
-	placeholder.innerHTML += render(data);
-};
+const attachToDom = (data) => (placeholder.innerHTML += render(data));
 
 //toggling current data checkbox
 const onChangeTask = (id) => {
