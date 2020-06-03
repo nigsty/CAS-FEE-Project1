@@ -104,12 +104,6 @@ option {
 	background-color: var(--bg-color);
 }
 
-#clear {
-	color: inherit;
-	background-color: var(--button-bg-color);
-	margin-top: 30px;
-}
-
 ul {
 	margin: 0;
 	padding: 0;
@@ -126,13 +120,6 @@ h1 {
 h2 {
 	margin: 0 8px;
 	display: inline;
-}
-
-.post-meta {
-	font-size: 1rem;
-	font-style: italic;
-	color: var(--secondary-font-color);
-	margin: -15px 20px 30px;
 }
 
 a {
@@ -265,7 +252,7 @@ label {
 }
 
 /* sending last element to the most right */
-#filter-sort-display li:last-child,
+#get-notes-by li:last-child,
 #change-background {
 	margin-left: auto;
 }
@@ -337,8 +324,7 @@ label {
 }
 
 .buttons button.edit,
-button.save,
-button.remove {
+button.save {
 	padding: 16px;
 	border: 0.1rem solid rgb(5, 159, 255);
 	background-size: 20px;
@@ -365,46 +351,6 @@ buttons button.edit:focus {
 .buttons button.save:hover,
 .buttons button.save:focus {
 	background-color: rgb(49, 200, 49, 0.5);
-}
-
-#todo:after {
-	text-align: center;
-	color: var(--nothing-todo-color) !important;
-	margin: 20px 0;
-}
-
-#todo:empty:after {
-	/* content:"Nichts zu tun"; */
-	content: attr(data-content);
-}
-
-/* Edit Task */
-ul.todo li input[type='text'] {
-	display: block !important;
-	height: 16px;
-}
-
-ul li input[type='text'] {
-	display: none;
-}
-
-ul li.editMode input[type='text'] {
-	display: block;
-}
-
-ul li.editMode label {
-	display: none;
-}
-
-.completed li {
-	background: var(--completed-task);
-	opacity: 0.5;
-}
-
-#completed:after,
-#todo:after {
-	text-align: center;
-	color: silver;
 }
 
 input:invalid {

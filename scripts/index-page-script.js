@@ -2,9 +2,9 @@ const data = getSavedTodos();
 
 let placeholder = data.completed ? completed : todo;
 
-const searchDisplay = document.getElementById('filter-sort-display');
+const getNotesBy = document.getElementById('get-notes-by');
 
-searchDisplay.addEventListener('click', (event) => {
+getNotesBy.addEventListener('click', (event) => {
 	let elementClicked = event.target;
 	const todoList = getSavedTodos();
 	const elements = document.getElementsByClassName('filter-button');
@@ -17,7 +17,7 @@ searchDisplay.addEventListener('click', (event) => {
 	if (elementClicked.id === 'finished') {
 		const filteredItems = todoList.filter((item) => item.completed);
 		placeholder.innerHTML = '';
-		filteredItems.forEach((filteredItem) => attachToDom(filteredItem));
+		filteredItems.forEach((filteredItem) => attachToDOM(filteredItem));
 	} else {
 		//Get todos sorted by finishing date
 		if (elementClicked.id === 'finish-date') {

@@ -20,7 +20,7 @@ const titleValidat = () => {
 	});
 };
 
-// getting form input values to local storage
+// getting form input values to Local storage
 const add_item = () => {
 	const title = document.querySelector('#title');
 	const description = document.querySelector('#description');
@@ -83,15 +83,15 @@ const filters = {
 	sortBy: '',
 };
 
-//sorts todoList by one of 3 criterias then call attachToDom function
+//sorts todoList by one of 3 criterias then call attach to the DOM function
 const sortRender = (data, filters) => {
 	const sortedTodos = data.sort((a, b) => (a[filters.sortBy] > b[filters.sortBy] ? -1 : 1));
 	placeholder.innerHTML = '';
-	sortedTodos.forEach((sortedTodo) => attachToDom(sortedTodo));
+	sortedTodos.forEach((sortedTodo) => attachToDOM(sortedTodo));
 };
 
 //attaching each todo to the DOM
-const attachToDom = (data) => (placeholder.innerHTML += render(data));
+const attachToDOM = (data) => (placeholder.innerHTML += render(data));
 
 //toggling current data checkbox
 const onChangeTask = (id) => {
