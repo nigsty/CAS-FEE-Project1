@@ -8,7 +8,7 @@ const getSavedTodos = () => {
 // Save the Todos to localStorage
 const setSaveTodos = (data) => localStorage.setItem('todoList', JSON.stringify(data));
 
-//Title input value validation
+//validat note title input value if it is shorter than 5
 const titleValidat = () => {
 	const titleValueValidat = document.getElementById('title');
 	titleValueValidat.addEventListener('input', function (event) {
@@ -43,7 +43,7 @@ const add_item = () => {
 	setSaveTodos(data);
 };
 
-// rendering saved data to the DOM
+// rendering saved notes to the DOM
 const render = (data) => {
 	let checked_item = data.completed ? 'checked="checked"' : '';
 	let doneUntilRender = data.doneUntilValue;
@@ -83,17 +83,17 @@ const filters = {
 	sortBy: '',
 };
 
-//sorts todoList by one of 3 criterias then call attach to the DOM function
+//sorts notes by one of 3 criterias then call attach to the DOM function
 const sortRender = (data, filters) => {
 	const sortedTodos = data.sort((a, b) => (a[filters.sortBy] > b[filters.sortBy] ? -1 : 1));
 	placeholder.innerHTML = '';
 	sortedTodos.forEach((sortedTodo) => attachToDOM(sortedTodo));
 };
 
-//attaching each todo to the DOM
+//attaching each note to the DOM
 const attachToDOM = (data) => (placeholder.innerHTML += render(data));
 
-//toggling current data checkbox
+//toggling current note checkbox
 const onChangeTask = (id) => {
 	const data = getSavedTodos();
 	const finisheddate = new Date();
@@ -108,12 +108,12 @@ const onChangeTask = (id) => {
 	updateLocalStorage(data);
 };
 
-// editing description input field
+// editing note description field
 const editTask = (id) => {
 	const parentDOM = document.getElementById('list-item-' + id);
 	const editStatus = parentDOM.getAttribute('data-edit');
 
-	// Get local storage data
+	// Get saved notes
 	const data = getSavedTodos();
 
 	//Find index of specific object using findIndex method.
@@ -141,9 +141,9 @@ const editTask = (id) => {
 		button[0].classList.remove('save');
 	}
 
-	// Update local storage data
+	// Update edited note
 	updateLocalStorage(data);
 };
 
-// Update local data Storage
+// Updates local data Storage
 const updateLocalStorage = (data) => localStorage.setItem('todoList', JSON.stringify(data));

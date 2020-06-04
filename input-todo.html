@@ -2,6 +2,8 @@
 <head>
     <meta charset="utf-8">
     <title>TODO inputs form</title>
+    <meta name="author" content="" />
+	<meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles/styles.css" rel="stylesheet" />
     <link rel="icon" href="favicon.png" type="image/png"/>
@@ -10,33 +12,38 @@
 <body>
     <header>
         <h1>Todo inputs form</h1>
+        <hr />
     </header>
     <div class="container">
     
-    <form id="todoForm" class="form" action="index.html">
-        <div>
-            <label for="title">Titel</label>
-            <input type="text" id="title" name="title" autocomplete="off" autofocus value="" minlength="5" required>
-        </div>
-        <div>
-            <label for="description">Beschreibung</label>
-            <textarea id="description" name="description"></textarea>
-        </div>
-        <div>
-            <label for="importancy">Wichtigkeit</label>
-            <input type="range" id="importancy" name="importancy" value="2" min="1" max="4">
-        </div>
-        <div>
-            <label for="doneuntil">Erledigt bis:</label>
-            <input type="datetime-local" id="done-until" name="doneuntil" required>
-        </div>
-        <div>
-            <button id="btn-cancel" type="reset">Cancel</button>
-            <button id="btn-submit" type="submit">Speichern</button>
-        </div>
-    </form>
+        <form id="todoForm" class="form" action="index.html">
+            <div>
+                <label for="title">Titel</label>
+                <input type="text" id="title" name="title" autocomplete="off" autofocus value="" minlength="5" required>
+            </div>
+            <div>
+                <label for="description">Beschreibung</label>
+                <textarea id="description" name="description"></textarea>
+            </div>
+            <div>
+                <label for="importancy">Wichtigkeit</label>
+                <input type="range" id="importancy" name="importancy" value="2" min="1" max="4">
+            </div>
+            <div>
+                <label for="doneuntil">Erledigt bis:</label>
+                <input type="datetime-local" id="done-until" name="doneuntil" required>
+            </div>
+            <div>
+                <button id="btn-cancel" type="reset">Cancel</button>
+                <button id="btn-submit" type="submit">Speichern</button>
+            </div>
+        </form>
+    </div> <!--  outer container -->
 
-</div> <!--  outer container -->
+<footer>
+    <hr />
+    <p class="copyright">&copy; Nigsty Equbamichael Abreha, CAS FEE 2020 Project 1</p>
+</footer>
 
 <script src="scripts/shared.js"></script>
 <script src="scripts/inputs-page.js"></script>

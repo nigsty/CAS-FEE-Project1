@@ -88,12 +88,13 @@ body {
 	padding: 1rem;
 	display: flex;
 	flex-direction: column;
-	height: 100%;
+	height: calc(100% - 1em);
 }
 
-/* to make stay the footer at the bottom */
+/* to Make html and body take up the full page, 
+ the 1em is to prevent an unnecessary vertical scrollbar from appearing. */
 html {
-	height: 100%;
+	height: calc(100% - 1em);
 }
 
 .container {
@@ -234,6 +235,10 @@ header {
 	margin-bottom: 32px;
 }
 
+header {
+	display: block;
+}
+
 textarea,
 input {
 	font: inherit;
@@ -355,6 +360,17 @@ buttons button.edit:focus {
 .buttons button.save:hover,
 .buttons button.save:focus {
 	background-color: rgb(49, 200, 49, 0.5);
+}
+
+#todo:after {
+	text-align: center;
+	color: var(--nothing-todo-color) !important;
+	margin: 20px 0;
+}
+
+#todo:empty:after {
+	/* content:"Nichts zu tun"; */
+	content: attr(data-content);
 }
 
 input:invalid {

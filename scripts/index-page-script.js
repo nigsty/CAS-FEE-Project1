@@ -1,7 +1,16 @@
 const data = getSavedTodos();
+const noDataMessage = 'There are no To-do items yet to list here.';
 
 let placeholder = data.completed ? completed : todo;
 
+//disply saved notes, if none --no data message-- will display
+if (data && data.length) {
+	sortRender(data, filters);
+} else {
+	document.getElementById('todo').dataset.content = noDataMessage;
+}
+
+//filtered and sorted notes will display
 const getNotesBy = document.getElementById('get-notes-by');
 
 getNotesBy.addEventListener('click', (event) => {
@@ -19,24 +28,22 @@ getNotesBy.addEventListener('click', (event) => {
 		placeholder.innerHTML = '';
 		filteredItems.forEach((filteredItem) => attachToDOM(filteredItem));
 	} else {
-		//Get todos sorted by finishing date
+		//Get notes sorted by finishing date
 		if (elementClicked.id === 'finish-date') {
 			filters.sortBy = 'doneUntilValue';
 			sortRender(todoList, filters);
 		}
-		//Get todos sorted by created date
+		//Get notes sorted by created date
 		if (elementClicked.id === 'created-date') {
 			filters.sortBy = 'createdOn';
 			sortRender(todoList, filters);
 		}
-		//Get todos sorted by todos importancy
+		//Get notes sorted by todos importancy
 		if (elementClicked.id === 'importance') {
 			filters.sortBy = 'importancyValue';
 			sortRender(todoList, filters);
 		}
 
-		document.getElementById('todo').dataset.content = 'There are no To-do items yet to list here.';
+		document.getElementById('todo').dataset.content = noDataMessage;
 	}
 });
-
-sortRender(data, filters);
