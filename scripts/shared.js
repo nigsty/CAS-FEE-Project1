@@ -20,8 +20,8 @@ const titleValidat = () => {
 	});
 };
 
-// getting form input values to Local storage
-const add_item = () => {
+// Adding form input values to the Localstorage
+const addNote = () => {
 	const title = document.querySelector('#title');
 	const description = document.querySelector('#description');
 	const importancy = document.querySelector('#importancy');
@@ -45,7 +45,7 @@ const add_item = () => {
 
 // rendering saved notes to the DOM
 const render = (data) => {
-	let checked_item = data.completed ? 'checked="checked"' : '';
+	let checked_item = data.completed ? true : false;
 	let doneUntilRender = data.doneUntilValue;
 	const doneUntilMoment = moment(doneUntilRender).locale('de').calendar(null, {
 		sameDay: '[Heute]',
@@ -56,28 +56,78 @@ const render = (data) => {
 		sameElse: '[Irgendwann]',
 	});
 
-	return `
-			<li data-id="${data.id}" class="list-item" id="list-item-${data.id}" >
-				<div class="list-columen1">
-					<div class="list-item-row-one">
-						<div class="item-done-until">${doneUntilMoment}</div>
-						<div class="item-title">${data.titleValue}</div>
-						<div class="item-importancy"><h2> ${data.importancyValue}</h2> 1=Niedrig bis 4=sehr Wichtig</div>
-					</div>	
-					<div class="list-item-row-two">
-					<div class="item-checkbox"><input class="checkbox" id="checkbox" type="checkbox" name="finished" ${checked_item} onchange="onChangeTask(${data.id})"> Finished</div>
-					<div class="item-description">${data.descriptionValue}</div>
-				</div>
+	const containerEl = document.createElement('li');
 
-				</div>
-				<div class="buttons">
-						<button class="edit" onClick="editTask(${data.id})"></button>
-					</div>
-			</li>
-				`;
+	containerEl.classList.add('list-item');
+	containerEl.setAttribute('data-id', data.id);
+	containerEl.setAttribute('id', `list-item-${data.id}`);
+
+	//setup first columen which contain all inputs except edit button
+	const columenOneDiv = document.createElement('div');
+	columenOneDiv.classList.add('list-columen-one');
+	containerEl.appendChild(columenOneDiv);
+
+	//setup the first row with in columen one
+	const itemRowOneDiv = document.createElement('div');
+	itemRowOneDiv.classList.add('list-item-row-one');
+
+	const doneUntilDiv = document.createElement('div');
+	doneUntilDiv.classList.add('item-done-until');
+	doneUntilDiv.innerHTML = doneUntilMoment;
+	itemRowOneDiv.appendChild(doneUntilDiv);
+
+	const itemTitleDiv = document.createElement('div');
+	itemTitleDiv.classList.add('item-title');
+	itemTitleDiv.innerHTML = data.titleValue;
+	itemRowOneDiv.appendChild(itemTitleDiv);
+
+	const importancyDiv = document.createElement('div');
+	importancyDiv.classList.add('item-importancy');
+	importancyDiv.innerHTML = `<h2>${data.importancyValue}</h2> 1=Niedrig bis 4=sehr Wichtig`;
+	itemRowOneDiv.appendChild(importancyDiv);
+
+	columenOneDiv.appendChild(itemRowOneDiv);
+	const itemRowTwoDiv = document.createElement('div');
+	itemRowTwoDiv.classList.add('list-item-row-two');
+
+	// setup todo checkbox
+	const itemCheckboxDiv = document.createElement('div');
+	itemCheckboxDiv.classList.add('item-checkbox');
+	const checkboxInput = document.createElement('input');
+	checkboxInput.setAttribute('id', 'checkbox');
+	checkboxInput.setAttribute('type', 'checkbox');
+	checkboxInput.setAttribute('name', 'finished');
+	checkboxInput.checked = data.completed;
+	if (data.completed) {
+		checkboxInput.setAttribute('checked', true);
+	}
+	checkboxInput.classList.add('checkbox');
+	checkboxInput.classList.add(`checkbox-${data.id}`);
+	itemCheckboxDiv.appendChild(checkboxInput);
+	itemCheckboxDiv.appendChild(document.createTextNode('Finished'));
+	itemRowTwoDiv.appendChild(itemCheckboxDiv);
+
+	// setup description div
+	const descDiv = document.createElement('div');
+	descDiv.classList.add('item-description');
+	descDiv.innerHTML = data.descriptionValue;
+	itemRowTwoDiv.appendChild(descDiv);
+	columenOneDiv.appendChild(itemRowTwoDiv);
+
+	//setup edit button
+	const buttonsDiv = document.createElement('div');
+	buttonsDiv.classList.add('buttons');
+	const editButton = document.createElement('button');
+	editButton.classList.add('edit');
+	editButton.classList.add(`edit-${data.id}`);
+	buttonsDiv.appendChild(editButton);
+
+	containerEl.appendChild(buttonsDiv);
+
+	return containerEl.outerHTML;
 };
 
-//init
+//initialize filters criteria
 const filters = {
 	finished: false,
 	sortBy: '',
@@ -88,10 +138,20 @@ const sortRender = (data, filters) => {
 	const sortedTodos = data.sort((a, b) => (a[filters.sortBy] > b[filters.sortBy] ? -1 : 1));
 	placeholder.innerHTML = '';
 	sortedTodos.forEach((sortedTodo) => attachToDOM(sortedTodo));
+	sortedTodos.forEach((dat) => {
+		document.querySelector(`.edit-${dat.id}`).addEventListener('click', (e) => {
+			editNote(dat.id);
+		});
+		document.querySelector(`.checkbox-${dat.id}`).addEventListener('change', (e) => {
+			onChangeTask(dat.id);
+		});
+	});
 };
 
 //attaching each note to the DOM
-const attachToDOM = (data) => (placeholder.innerHTML += render(data));
+const attachToDOM = (data) => {
+	placeholder.innerHTML += render(data);
+};
 
 //toggling current note checkbox
 const onChangeTask = (id) => {
@@ -105,11 +165,11 @@ const onChangeTask = (id) => {
 		data[objIndex].completed = false;
 		data[objIndex].finishedOn = '';
 	}
-	updateLocalStorage(data);
+	updateNote(data);
 };
 
 // editing note description field
-const editTask = (id) => {
+const editNote = (id) => {
 	const parentDOM = document.getElementById('list-item-' + id);
 	const editStatus = parentDOM.getAttribute('data-edit');
 
@@ -142,8 +202,8 @@ const editTask = (id) => {
 	}
 
 	// Update edited note
-	updateLocalStorage(data);
+	updateNote(data);
 };
 
 // Updates local data Storage
-const updateLocalStorage = (data) => localStorage.setItem('todoList', JSON.stringify(data));
+const updateNote = (data) => localStorage.setItem('todoList', JSON.stringify(data));

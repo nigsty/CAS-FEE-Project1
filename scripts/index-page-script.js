@@ -1,5 +1,5 @@
 const data = getSavedTodos();
-const noDataMessage = 'There are no To-do items yet to list here.';
+const emptyMessage = 'There are no To-dos yet to list here.';
 
 let placeholder = data.completed ? completed : todo;
 
@@ -7,7 +7,7 @@ let placeholder = data.completed ? completed : todo;
 if (data && data.length) {
 	sortRender(data, filters);
 } else {
-	document.getElementById('todo').dataset.content = noDataMessage;
+	document.getElementById('todo').dataset.content = emptyMessage;
 }
 
 //filtered and sorted notes will display
@@ -44,6 +44,6 @@ getNotesBy.addEventListener('click', (event) => {
 			sortRender(todoList, filters);
 		}
 
-		document.getElementById('todo').dataset.content = noDataMessage;
+		document.getElementById('todo').dataset.content = emptyMessage;
 	}
 });

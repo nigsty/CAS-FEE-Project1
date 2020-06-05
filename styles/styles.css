@@ -273,7 +273,7 @@ label {
 	flex-flow: column;
 }
 
-.list-columen1 {
+.list-columen-one {
 	flex-basis: 80%;
 }
 
@@ -284,7 +284,7 @@ label {
 }
 
 .list-item-row-one {
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 
 .item-done-until,
