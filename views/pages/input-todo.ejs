@@ -1,0 +1,26 @@
+<div class="container">
+	<form class="form" method="POST" action="/input-todo">
+		<div>
+			<label for="title">Titel</label>
+			<input type="text" id="title" name="title" autocomplete="off" autofocus value="" minlength="5" required>
+			<p id="errorText"></p>
+		</div>
+		<div>
+			<label for="description">Beschreibung</label>
+			<textarea id="description" name="description"></textarea>
+		</div>
+		<div>
+			<label for="importancy">Wichtigkeit</label>
+			<input type="range" id="importancy" name="importancy" value="2" min="1" max="4" />
+		</div>
+		<div>
+			<label for="doneuntil">Erledigt bis:</label>
+			<input type="datetime-local" id="done-until" name="doneuntil" required />
+		</div>
+		<div>
+			<button id="btn-cancel" type="reset">Cancel</button>
+			<button id="btn-submit" type="submit">Speichern</button>
+		</div>
+	</form>
+</div>
+<!--  outer container -->

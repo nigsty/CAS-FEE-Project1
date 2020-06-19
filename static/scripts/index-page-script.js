@@ -1,13 +1,19 @@
+'use strict';
+import { onChangeTask } from './modules/task-status.js';
+import { editTask } from './modules/edit-task.js';
+
 const data = getSavedTodos();
+
+let todo = document.getElementById('todo');
+let placeholder = todo;
+
 const emptyMessage = 'There are no To-dos yet to list here.';
 
-let placeholder = data.completed ? completed : todo;
-
-//disply saved notes, if none --no data message-- will display
+//display saved notes, if none --no data message-- will display
 if (data && data.length) {
 	sortRender(data, filters);
 } else {
-	document.getElementById('todo').dataset.content = emptyMessage;
+	todo.dataset.content = emptyMessage;
 }
 
 //filtered and sorted notes will display
@@ -22,6 +28,7 @@ getNotesBy.addEventListener('click', (event) => {
 	}
 
 	elementClicked.classList.add('active');
+
 	//Get todos filter finished date
 	if (elementClicked.id === 'finished') {
 		const filteredItems = todoList.filter((item) => item.completed);
@@ -45,5 +52,23 @@ getNotesBy.addEventListener('click', (event) => {
 		}
 
 		document.getElementById('todo').dataset.content = emptyMessage;
+	}
+});
+
+//description field editing
+document.addEventListener('click', (e) => {
+	if (e.target.classList.contains('edit')) {
+		var dataId = e.target.parentElement.parentElement.getAttribute('data-id');
+		editTask(parseInt(dataId));
+	}
+});
+
+//checkbox task status change
+document.addEventListener('change', (e) => {
+	if (e.target.classList.contains('task-status')) {
+		var dataId = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.getAttribute(
+			'data-id'
+		);
+		onChangeTask(parseInt(dataId));
 	}
 });
