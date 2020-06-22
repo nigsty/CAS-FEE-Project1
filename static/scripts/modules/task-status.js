@@ -1,14 +1,18 @@
+'use strict';
+
+import { TodoStorage } from '../dl/todo-storage.js';
+
+const storage = new TodoStorage();
 //toggling current note checkbox
 export const onChangeTask = (id) => {
-	const data = getSavedTodos();
+	const data = storage.getTodoByID(id);
 	const finishedDate = new Date();
-	const objIndex = data.findIndex((obj) => obj.id === id);
-	if (!data[objIndex].completed) {
-		data[objIndex].completed = true;
-		data[objIndex].finishedOn = finishedDate;
+	if (!data.completed) {
+		data.completed = true;
+		data.finishedOn = finishedDate;
 	} else {
-		data[objIndex].completed = false;
-		data[objIndex].finishedOn = '';
+		data.completed = false;
+		data.finishedOn = '';
 	}
-	updateNote(data);
+	storage.updateTodo(data);
 };

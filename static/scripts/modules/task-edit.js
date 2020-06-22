@@ -1,13 +1,14 @@
+'use strict';
+import { TodoStorage } from '../dl/todo-storage.js';
+
 // editing note description field
-export const editTask = (id) => {
+export const taskEdit = (id) => {
 	const parentDOM = document.getElementById('list-item-' + id);
 	const editStatus = parentDOM.getAttribute('data-edit');
+	const storage = new TodoStorage();
 
-	// Get saved notes
-	const data = getSavedTodos();
+	const todo = storage.getTodoByID(id);
 
-	//Find index of specific object using findIndex method.
-	const objIndex = data.findIndex((obj) => obj.id === id);
 	const itemDescription = parentDOM.getElementsByClassName('item-description')[0];
 
 	if (editStatus == null) {
@@ -15,7 +16,6 @@ export const editTask = (id) => {
 		itemDescription.setAttribute('contenteditable', 'true');
 		itemDescription.focus();
 
-		// Edit button
 		const button = parentDOM.getElementsByClassName('edit');
 		button[0].classList.add('save');
 	} else {
@@ -23,13 +23,12 @@ export const editTask = (id) => {
 		itemDescription.removeAttribute('focused');
 		itemDescription.removeAttribute('contenteditable');
 		// Description text
-		data[objIndex]['descriptionValue'] = itemDescription.innerText;
+		todo.descriptionValue = itemDescription.innerText;
 
-		// Edit button
 		const button = parentDOM.getElementsByClassName('edit');
 		button[0].classList.remove('save');
 	}
 
 	// Update edited note
-	updateNote(data);
+	storage.updateTodo(todo);
 };

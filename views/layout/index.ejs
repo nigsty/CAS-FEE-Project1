@@ -12,9 +12,8 @@
 
 	<body>
 		<%- include('./partials/header') %> <%- include(`../pages/${template}`) %> <%- include('./partials/footer') %>
-		<script src="/scripts/lib/moment.min.js"></script>
-		<script src="/scripts/notes-storage.js"></script>
-		<script src="/scripts/index-page-script.js" type="module"></script>
-		<script src="/scripts/shared.js"></script>
+		<script src="/scripts/utils/moment.min.js"></script>
+		<script src="/scripts/controller/index-controller.js" type="module"></script>
+		<script src="/scripts/controller/theme-controller.js" type="module"></script>
 	</body>
 </html>
