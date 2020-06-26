@@ -20,6 +20,7 @@
   * Filtern von „abgeschlossenen" Notizen
   * Abspeichern der Daten auf dem Server
   * Wechseln des Styles
+  
 ## Lösung
 * Genutzte templateing Engine "EJS"
 * Abspeichern der Daten auf dem "Localstorage"
