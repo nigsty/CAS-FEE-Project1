@@ -23,7 +23,7 @@
 * Genutzte templateing Engine "EJS"
 * Abspeichern der Daten auf dem "Localstorage"
 * End produkt screeshot 
-![](static/assets/WireFrameScreenshotProject1.png)
+![](static/assets/both-in-one.PNG)
 
 ### Installation
 * "npm install"
