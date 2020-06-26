@@ -3,7 +3,7 @@
 [detail beschreibung pdf](static/assets/Projekt_1Beschreibung.pdf )
 ### Ziel: 
 Grundlagen festigen von CSS/JS/HTML
-![](assets/WireFrameScreenshotProject1.png)
+![](static/assets/WireFrameScreenshotProject1.png)
 
 ### Einschränkungen
 * Nutzung eines SPA Frameworks (Angular oder React +...) ist nicht erlaubt
