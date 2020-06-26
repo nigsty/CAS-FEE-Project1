@@ -8,7 +8,7 @@
   * Nutzung des MVC Patterns trotzdem sinnvoll
 * Nutzung von Layout / Styling Framework wie Bootstrap nicht erlaubt
   * Flexbox und Grid nutzen
-* Nutzung von simpler Templating Engine (z.B. Handlebars ) ist
+* Nutzung von simpler Templating Engine (z.B. Handlebars ) ist verlangt.
 
 ### Funktionsumfang
 * Der Funktionsumfang ist in den Wire Frames dargestellt. Diese beinhalten u.a.
