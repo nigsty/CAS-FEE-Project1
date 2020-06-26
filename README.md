@@ -1,6 +1,6 @@
 # Project 1 
 ## Beschreibung die Aufgabe
- [detail beschreibung pdf](static/assets/Projekt_1Beschreibung.pdf )
+[detail beschreibung pdf](static/assets/Projekt_1Beschreibung.pdf )
 ### Ziel: 
 Grundlagen festigen von CSS/JS/HTML
 ![](assets/WireFrameScreenshotProject1.png)
