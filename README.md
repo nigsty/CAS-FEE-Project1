@@ -18,9 +18,9 @@
   * Abspeichern der Daten auf dem Server
   * Wechseln des Styles
 ## Lösung
-* Templateing Engine EJS 
-* Abspeichern der Daten auf dem Localstorage
+* Genutzte templateing Engine "EJS"
+* Abspeichern der Daten auf dem "Localstorage"
 
-## Installation
+### Installation
 * "npm install"
 * "npm start"
