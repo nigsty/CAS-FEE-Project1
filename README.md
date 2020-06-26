@@ -1,7 +1,8 @@
 # Project 1 
 ## Beschreibung die Aufgabe
 ![](static/assets/WireFrameScreenshotProject1.png)
-[detail beschreibung pdf](static/assets/Projekt_1Beschreibung.pdf )
+
+[Detail beschreibung pdf](static/assets/Projekt_1Beschreibung.pdf )
 ### Ziel: 
 * Grundlagen festigen von CSS/JS/HTML
 
@@ -22,6 +23,8 @@
 ## Lösung
 * Genutzte templateing Engine "EJS"
 * Abspeichern der Daten auf dem "Localstorage"
+* End produkt screeshot 
+![](static/assets/both-in-one.PNG)
 
 ### Installation
 * "npm install"
