@@ -24,7 +24,7 @@
 ## Lösung
 * Genutzte templateing Engine "EJS"
 * Abspeichern der Daten auf dem "Localstorage"
-* End produkt screeshot 
+* Endprodukt screeshot 
 ![](static/assets/both-in-one.PNG)
 
 ### Installation
