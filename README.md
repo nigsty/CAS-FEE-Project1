@@ -30,5 +30,5 @@
 ### Installation
 * "npm install"
 * "npm start"
-* Die Webseite ist unter http://localhost:3000/ erreichbar
+* Die Webseite ist unter http://localhost:3001/ erreichbar
 
