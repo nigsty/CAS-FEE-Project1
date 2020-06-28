@@ -14,10 +14,11 @@ export class TodoCotroller {
 			this.taskAdd();
 			location.assign('./');
 		});
-		
+
 		/* Validating the title field length, if it is less than 5,
 		just for test of setCustomValidity to give it a try */
 		titleValidate();
+		this.cancelTaskInput();
 	}
 
 	taskAdd() {
@@ -38,6 +39,12 @@ export class TodoCotroller {
 		};
 		this.storage.taskAdd(current_item);
 		this.form.reset();
+	}
+
+	cancelTaskInput() {
+		document.getElementById('btn-cancel').addEventListener('click', () => {
+			location.assign('./');
+		});
 	}
 }
 

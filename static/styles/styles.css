@@ -115,7 +115,9 @@ button {
 	background-color: inherit;
 }
 
-.thin-box:hover, li a:hover, li a:focus {
+.thin-box:hover,
+li a:hover,
+li a:focus {
 	border-color: var(--active-focused);
 }
 
