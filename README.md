@@ -20,13 +20,15 @@
   * Filtern von „abgeschlossenen" Notizen
   * Abspeichern der Daten auf dem Server
   * Wechseln des Styles
+  
 ## Lösung
 * Genutzte templateing Engine "EJS"
 * Abspeichern der Daten auf dem "Localstorage"
-* End produkt screeshot 
+* Endprodukt screeshot 
 ![](static/assets/both-in-one.PNG)
 
 ### Installation
 * "npm install"
 * "npm start"
+* Die Webseite ist unter http://localhost:3001/ erreichbar
 
