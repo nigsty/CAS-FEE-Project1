@@ -141,7 +141,6 @@ li a:focus {
 #btn-submit:hover {
 	background-color: var(--active-focused);
 	border: 2px solid var(--primary-font-color);
-	color: var(--active-font-color);
 }
 
 #btn-cancel {
