@@ -10,6 +10,7 @@
 	--active-focused: #87cefa;
 	--heading-color: #454539;
 	--input-textarea-color: #f6f6f6;
+	--add-img: url(../img/add-black.png);
 	--edit-img: url(../img/edit-black.png);
 	--save-img: url(../img/save-black.png);
 	--remove-img: url(../img/remove-black.png);
@@ -29,6 +30,7 @@
 	--heading-color: #a09fbf;
 	--input-textarea-color: #222;
 	--completed-task: #3f3f3f;
+	--add-img: url(../img/add-white.png);
 	--edit-img: url(../img/edit-white.png);
 	--save-img: url(../img/save-white.png);
 	--remove-img: url(../img/remove-white.png);
@@ -297,6 +299,14 @@ button.save {
 	background-repeat: no-repeat;
 	background-image: var(--edit-img);
 	background-position: center;
+}
+
+.add {
+	padding-left: 17px;
+	background-size: 13px;
+	background-image: var(--add-img);
+	background-repeat: no-repeat;
+	background-position: left;
 }
 
 .buttons button.save {

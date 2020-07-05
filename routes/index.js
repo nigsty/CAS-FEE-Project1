@@ -8,11 +8,6 @@ module.exports = () => {
 	router.get('/', (request, response) => {
 		response.render('layout', { pageTitle: 'Welcome', template: 'index' });
 	});
-	router.post('/', (request, response) => {
-		response.render('layout', { pageTitle: 'Welcome', template: 'index' });
-		
-	});
-
 	router.use('/input-todo', inputTodoRoute());
 
 	return router;
