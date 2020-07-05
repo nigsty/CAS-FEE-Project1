@@ -13,6 +13,7 @@
 	--add-img: url(../img/add-black.png);
 	--edit-img: url(../img/edit-black.png);
 	--save-img: url(../img/save-black.png);
+	--db-img: url(../img/db-black.png);
 	--remove-img: url(../img/remove-black.png);
 	--completed-task: #fdfdfd;
 	--active-font-color: #333;
@@ -33,6 +34,7 @@
 	--add-img: url(../img/add-white.png);
 	--edit-img: url(../img/edit-white.png);
 	--save-img: url(../img/save-white.png);
+	--db-img: url(../img/db-white.png);
 	--remove-img: url(../img/remove-white.png);
 	--active-font-color: #333;
 	--hr-color: #1e242a;
@@ -307,6 +309,12 @@ button.save {
 	background-image: var(--add-img);
 	background-repeat: no-repeat;
 	background-position: left;
+}
+.db {
+	padding-left: 22px;
+	background-size: 18px;
+	background-image: var(--db-img);
+	background-repeat: no-repeat;
 }
 
 .buttons button.save {
