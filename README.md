@@ -22,7 +22,7 @@
   * Wechseln des Styles
   
 ## Lösung
-* Genutzte templateing Engine "EJS"
+* Templating Engine "EJS"
 * Abspeichern der Daten auf dem "Localstorage"
 * Endprodukt screeshot 
 ![](static/assets/both-in-one.PNG)
