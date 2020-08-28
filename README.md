@@ -2,7 +2,7 @@
 ## Beschreibung die Aufgabe
 ![](static/assets/WireFrameScreenshotProject1.png)
 
-[Detail beschreibung pdf](static/assets/Projekt_1Beschreibung.pdf )
+[Detail beschreibung (pdf)](static/assets/Projekt_1Beschreibung.pdf )
 ### Ziel: 
 * Grundlagen festigen von CSS/JS/HTML
 
