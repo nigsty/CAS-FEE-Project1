@@ -4,7 +4,7 @@
     "engines": {
     "node": "12.16.2"
     },
-	"description": "![](assets/WireFrameScreenshotProject1.png)",
+	"description": "Project 1 todo list application for CAS FEE 2020",
 	"main": "server.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
