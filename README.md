@@ -30,5 +30,5 @@
 ### Installation
 * "npm install"
 * "npm start"
-* Die Webseite ist unter http://localhost:3001/ erreichbar
+* Die Webseite ist unter http://localhost:3001/  oder auf dem Web Herokuapps unter https://todo-list-project1.herokuapp.com/ erreichbar.
 
