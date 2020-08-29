@@ -15,6 +15,7 @@ export class TodoStorage {
 	updateTodo(todo) {
 		const index = this.getTodos().findIndex((item) => item.id === todo.id);
 		if (index !== -1) {
+			this.data[index] = todo;
 			localStorage.setItem('todoList', JSON.stringify(this.data));
 		}
 	}
